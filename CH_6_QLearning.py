@@ -16,10 +16,13 @@ actions = {
 class Environment():
     def __init__(self, ):
         # Environment is a 12x4 gridworld where the reward is -1 everywhere
-        self.env = -np.ones((4, 12))
+        self.env = -np.ones((10, 12))
         # Reward is -100 where there is a cliff
         self.env[-1, 1:-1] = -100
         self.env[-2, 3:-3] = -100
+        self.env[1:, 7] = -100
+        self.env[:-3, 5] = -100
+        self.env[1:, 3] = -100
         # Reward is 0 in the goal state
         self.env[-1, -1] = 0
         
@@ -125,7 +128,7 @@ policy = Policy()
 
 
 # Optimize the policy
-for ep in range(0, 500):
+for ep in range(0, 1000):
     # Reset the Environment
     env.reset_env()
     
